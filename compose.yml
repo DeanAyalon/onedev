@@ -3,13 +3,17 @@ services:
   onedev:
     image: 1dev/server
     container_name: onedev
+    profiles:
+      - dev
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${STORAGE:-./storage}:/opt/onedev
-    ports:
-      - 6610:6610
-      - 6611:6611
+    # ports:
+    #   - 6610:6610   # HTTP/S
+    #   - 6611:6611   # SSH
     environment:
       - VIRTUAL_HOST=${DOMAIN}
+      - VIRTUAL_PORT=6610
+      - LETSENCRYPT_HOST=${DOMAIN} # Testing nginx-proxy/acme-companion
 
 # docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/onedev:/opt/onedev -p 6610:6610 -p 6611:6611 1dev/server
