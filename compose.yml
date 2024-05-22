@@ -3,6 +3,7 @@ services:
   onedev:
     image: 1dev/server
     container_name: onedev
+    hostname: onedev
     profiles:
       - dev
     volumes:
