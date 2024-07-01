@@ -5,7 +5,8 @@ services:
     container_name: onedev
     hostname: onedev
     profiles:
-      - dev
+      - live
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${STORAGE:-./storage}:/opt/onedev
