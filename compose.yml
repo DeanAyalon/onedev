@@ -14,7 +14,7 @@ services:
       # - 6610:6610   # HTTP/S (Proxied)
       # - 6611:6611   # SSH
     environment:
-      VIRTUAL_HOST: ${DOMAIN?}
+      VIRTUAL_HOST: ${DOMAIN:?}
       VIRTUAL_PORT: 6610
-      # LETSENCRYPT_HOST: ${DOMAIN} # Testing nginx-proxy/acme-companion
-      CERT_NAME: ${CERT_NAME:-${DOMAIN}}
+      # LETSENCRYPT_HOST: $DOMAIN # Testing nginx-proxy/acme-companion
+      CERT_NAME: ${CERT_NAME:-$DOMAIN}
